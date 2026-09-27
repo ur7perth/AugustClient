@@ -23,11 +23,31 @@ jobs:
         with:
           gradle-version: '8.8'
 
-      - name: Build with Gradle
-        run: gradle clean build
+      - name: Build with Gradle (verbose)
+        run: |
+          set -o pipefail
+          gradle clean build --info 2>&1 | tee build.log
+        continue-on-error: true
+
+      - name: Show mixin/refmap related log lines
+        run: |
+          grep -i -E "mixin|refmap|annotation" build.log | tail -300 || echo "NO MATCHES FOUND"
+
+      - name: Fail job if build actually failed
+        run: |
+          if grep -q "BUILD FAILED" build.log; then
+            echo "Build failed - see logs above"
+            exit 1
+          fi
 
       - name: Upload built jar
         uses: actions/upload-artifact@v4
         with:
           name: mod-jar
           path: build/libs/*.jar
+
+      - name: Upload full build log
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-build-log
+          path: build.log

@@ -4,7 +4,6 @@
   "package": "com.pingtweaks.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "PlayerEntityRenderStateMixin",
     "PlayerEntityRendererMixin",
     "LivingEntityRendererMixin"
   ],

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "pingtweaks",
+  "version": "${version}",
+  "name": "PingTweaks",
+  "description": "Client-side only mod: ping display + name tag tweaks with an in-game GUI opened with Right Shift.",
+  "authors": [
+    "YourName"
+  ],
+  "contact": {
+    "sources": "https://github.com/yourname/pingtweaks"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.pingtweaks.PingTweaksClient"
+    ]
+  },
+  "mixins": [
+    "pingtweaks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21",
+    "java": ">=21"
+  }
+}
